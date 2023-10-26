@@ -1,0 +1,45 @@
+{
+	"author": "Yaron Koresh <aharonkoresh1@gmail.com>",
+	"bugs": {
+		"url": "https://github.com/YaronKoresh/shual/issues"
+	},
+	"dependencies": {
+		"@yaronkoresh/math": "^3.5.2"
+	},
+	"description": "A fibonacci based hashing function. With message/salt Utf-8 support & hash length/strength by selection.",
+	"devDependencies": {
+		"@swc/helpers": "^0.5.1",
+		"esbuild": "^0.18.11"
+	},
+	"exports": {
+		".": {
+			"import": "./dist/bundle.min.mjs",
+			"require": "./dist/bundle.min.cjs",
+			"script": "./dist/bundle.min.js"
+		}
+	},
+	"keywords": [
+		"crypt",
+		"data",
+		"hash",
+		"fibonacci",
+		"algorithm"
+	],
+	"license": {
+		"type": "MIT",
+		"url": "https://github.com/YaronKoresh/shual/raw/master/LICENSE"
+	},
+	"main": "dist/bundle.min.cjs",
+	"module": "dist/bundle.min.mjs",
+	"name": "shual",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/YaronKoresh/shual.git"
+	},
+	"scripts": {
+		"build": "node ./scripts/build.js",
+		"test": "node ./scripts/test.js"
+	},
+	"type": "module",
+	"version": "1.0.0"
+}
