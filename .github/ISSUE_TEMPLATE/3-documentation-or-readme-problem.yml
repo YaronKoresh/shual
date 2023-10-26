@@ -1,0 +1,20 @@
+name: 📗 Open an issue regarding the documentations & instructions.
+description: Let us know about any problematic document.
+labels: [documentation]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for wanting to help!
+
+        Please fill in as much of the following form as you're able.
+  - type: textarea
+    attributes:
+      label: Link(s) to the affected documentation
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Description of the problem
+    validations:
+      required: true

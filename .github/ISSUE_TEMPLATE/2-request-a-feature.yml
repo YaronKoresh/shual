@@ -1,0 +1,23 @@
+name: 🚀 Feature request
+description: Suggest an idea to improve this project
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting an idea to make our project better.
+
+        Please fill in as much of the following form as you're able.
+  - type: textarea
+    attributes:
+      label: What is the new feature you want us to add?
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: What are the needs this feature will satisfy?
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: What alternatives have you considered, until now?
