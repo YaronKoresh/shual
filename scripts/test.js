@@ -2,7 +2,7 @@ import { Shual } from "../dist/bundle.mjs";
 
 let results = [];
 
-/* 1 */ results.push( Shual("abc","abc",4) === "r<.#" );
+/* 1 */ results.push( Shual("abc","abc") === 'brHKgj>M' );
 
 console.log("\n\n\n");
 

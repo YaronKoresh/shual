@@ -148,129 +148,6 @@ var $shual = (() => {
       r = a(r, t), t = h(r, t), o.push(r);
     return e.includes("-") && (o = o.slice(0, parseInt(e))), o;
   };
-  var Y = function(e) {
-    if (e.length === 0 || "0".repeat(e.length) === e)
-      return false;
-    for (; ; ) {
-      if (e.slice(0, Math.max(e.length / 2)) === e.slice(Math.max(e.length / 2)))
-        return true;
-      if (e.slice(0, 1) === "0") {
-        e = e.slice(1);
-        continue;
-      }
-      break;
-    }
-    return false;
-  };
-  var A = function(e, t, r = "6") {
-    r = a(r, 0);
-    let o = [e, t];
-    if (o.length < 2)
-      return null;
-    let l = o[0].toString() ?? "0";
-    o = o.slice(1);
-    let i = function(n, c) {
-      c = c.toString();
-      let u = n.slice(0, 1) === "-", d = c.slice(0, 1) === "-", y = !u && d || u && !d, x = n, T = c;
-      if (n = n.replace("-", ""), c = c.replace("-", ""), c = c.toString(), a(n, "0") !== "0" && a(c, "0") === "0")
-        return console.error("A division of any negative/positive number by zero is invalid."), null;
-      let m = "0", j = "0", B = Math.max(n.split(".")[0].length - c.split(".")[0].length - 1, 0), S = c.indexOf("."), V = "1" + "0".repeat(B);
-      S = S === -1 ? 0 : c.length - S - 1;
-      let R = S === 0 ? c + "0".repeat(B) : S <= B ? c.replace(".", "") + "0".repeat(B - S) : c.replace(".", "").slice(0, c.replace(".", "").length - S + B) + "." + c.replace(".", "").slice(c.replace(".", "").length - S + B);
-      for (; ; ) {
-        let C = a(m, R), D = g(C, n);
-        if (D === true) {
-          m = C, j = a(j, V);
-          break;
-        } else if (D === n)
-          m = C, j = a(j, V);
-        else {
-          if (B === 0)
-            break;
-          B -= 1, V = "1" + "0".repeat(B), S = R.indexOf("."), S = S === -1 ? 0 : R.length - S - 1, R = S === 1 && R.slice(R.length - 1) === "0" ? R.slice(0, R.length - 2) : R.slice(R.length - 1) === "0" ? R.slice(0, R.length - 1) : R.replace(".", "").slice(0, R.replace(".", "").length - S - 1) + "." + R.replace(".", "").slice(R.replace(".", "").length - S - 1);
-        }
-      }
-      if (m !== n && g(r, 0) === r) {
-        let C = h(n, m), D = "", Q = false;
-        for (; Q === false; ) {
-          let N = "0", X = "0", W = I(C, "10"), O = a(N, c);
-          for (; g(O, W) !== O; )
-            N = O, O = a(N, c), X = a(X, "1");
-          if (D += X, C === "0" || D.length >= parseInt(r)) {
-            for (; D.slice(D.length - 1) === "0"; )
-              D = D.slice(0, D.length - 1);
-            return D !== "" && (D = "." + D), console.log(`Dividing ${x} by ${T} into ` + (y ? "-" : "") + `${j}${D}`), (y ? "-" : "") + `${j}${D}`;
-          }
-          C = h(W, N), Q = Y(D);
-        }
-        return (y ? "-" : "") + `${j}.${D.slice(0, D.length / 2)}`;
-      }
-      return (y ? "-" : "") + j;
-    };
-    for (; l.slice(".")[0].length > 1 && l.slice(0, 1) === "0"; )
-      l = l.slice(1);
-    for (; l.includes(".") && l.slice(l.length - 1) === "0"; )
-      l = l.slice(0, l.length - 1);
-    let s = function(n) {
-      for (n = n.toString(); n.slice(".")[0].length > 1 && n.slice(0, 1) === "0"; )
-        n = n.slice(1);
-      for (; n.includes(".") && n.slice(n.length - 1) === "0"; )
-        n = n.slice(0, n.length - 1);
-      l = i(l, n);
-    };
-    o.map((n) => s(n));
-    let f = l.split(".")[0] ?? "0", p = l.split(".")[1] ?? "0";
-    for (; p.length > 0 && p.slice(p.length - 1) === "0"; )
-      p = p.slice(0, p.length - 1);
-    return p.length === 0 ? f : [f, p].join(".");
-  };
-  var b = function(e, t) {
-    let r = function(l, i) {
-      let s = i;
-      for (; s.length > 1; )
-        s = a(s.split(""));
-      s = ["3", "6", "9"].includes(s);
-      let f = ["0", "5"].includes(i.slice(i.length - 1)) && i !== "0", p = ["2", "4", "6", "8"].includes(i.slice(i.length - 1));
-      return f ? (i = A(i, 5), l = a(l, l, l, l, l), r(l, i)) : s ? (i = A(i, 3), l = a(l, l, l), r(l, i)) : p ? (i = A(i, 2), l = a(l, l), r(l, i)) : { high: l, low: i };
-    };
-    return r(e, t);
-  };
-  var I = function(...e) {
-    if (e = e.flat(), e.length < 2)
-      return null;
-    let t = e[0].toString().split(".")[0] ?? "0", r = e[0].toString().split(".")[1] ?? "0";
-    e = e.slice(1);
-    let o = function(i, s) {
-      if (s = a(s, 0), i = a(i, 0), a(i, 0) === "0" || a(s, 0) === "0")
-        return "0";
-      if (g(i, s) === s) {
-        let c = s;
-        s = i, i = c;
-      }
-      let p = b(i, s), n = "0";
-      for (; g("0", p.low) === p.low; )
-        n = a(n, p.high), p.low = h(p.low, 1);
-      return n;
-    }, l = function(i) {
-      let s = i.toString().split(".")[0] ?? "0", f = i.toString().split(".")[1] ?? "0", p = t.slice(0, 1) === "-", n = s.slice(0, 1) === "-", c = !p && n || p && !n;
-      for (t = t.replace("-", ""), s = s.replace("-", ""); r.slice(r.length - 1) === "0" && r.length > 0; )
-        r = r.slice(0, r.length - 1);
-      for (; f.slice(f.length - 1) === "0" && f.length > 0; )
-        f = f.slice(0, f.length - 1);
-      r = v(r, f.length, "right"), f = v(f, r.length, "right");
-      let u = r.length * 2, d = t + r, y = s + f, x = o(d, y);
-      x === "0" ? (t = "0", r = "0") : (t = x.slice(0, x.length - u), t = (t === "" ? c ? "-0" : "0" : c ? "-" : "") + t, r = x.slice(x.length - u));
-    };
-    for (e.map((i) => l(i)); r.slice(r.length - 1) === "0" && r.length > 0; )
-      r = r.slice(0, r.length - 1);
-    return r.length === 0 ? t : [t, r].join(".");
-  };
-  var $ = function(e, t) {
-    e = e.toString();
-    for (var r = [], o = 0; o < e.length; o += t)
-      r.push(e.slice(o, o + t));
-    return r;
-  };
   var P = function(...e) {
     if (e = e.flat(), e.length < 2)
       return null;
@@ -316,64 +193,67 @@ var $shual = (() => {
   };
 
   // src/Shual.js
-  var Shual = function(msg, salt, len = 8) {
-    len = len.toString();
-    if (g(len, 0) !== len) {
-      console.error(`The Length must be one or above!`);
+  var Shual = function(msg, salt, strength = 8, len = 8) {
+    if (g(len, 0) !== len.toString()) {
+      console.error(`Length must be one or above!`);
       return null;
     }
-    len = I(len, 3);
+    len = parseInt(len);
+    if (g(strength, 0) !== strength.toString()) {
+      console.error(`Strength must be one or above!`);
+      return null;
+    }
+    strength = parseInt(strength);
+    if (len > parseInt(strength)) {
+      console.error(`Strength must be greater than length!`);
+      return null;
+    }
+    strength *= 100;
     if (msg.length === 0) {
-      console.error(`The selected password is invalid`);
+      console.error(`Password is invalid`);
       return null;
     }
     if (salt.length === 0) {
-      console.error(`The selected salt is invalid`);
+      console.error(`Salt is invalid`);
       return null;
     }
     const msgs = U(msg);
-    const sum = a(msgs, 0);
     const salts = U(salt);
-    const sumS = a(salts, 0);
-    let fibFactor = 128;
-    let m = [];
-    let mfi = 0;
-    for (let j = msgs[0]; j < len * 2 + msgs[0]; j += 2) {
-      for (let i = 0; i < msgs.length * 3; i += 3) {
-        let index1 = (msgs.length + i) % 8;
-        let index2 = (sum + i) % 7;
-        let index3 = Math.abs(index1 + index2 - j) % 8;
-        let index4 = Math.abs((index3 + 1) * 2) % 7;
-        fibFactor = a(P(a(fibFactor, i, j, 1, index1, index2, index3, index4), 96), 96);
-        let fib = [...ie(fibFactor)].reverse().slice(0, 64).map((f2) => [f2.charAt(index1), f2.charAt(index2), f2.charAt(index3), f2.charAt(index4)]).flat();
-        let value = msgs[i / 3] % 256;
-        let f = fib[value];
-        m[j] = (m[j] ?? 0) + f;
-        m[j] %= 10;
+    const sumM = +a(msgs, 0);
+    const sumS = +a(salts, 0);
+    let index1 = msgs.length % strength;
+    let index2 = salts.length % strength;
+    let index3 = (sumM + index2) % strength;
+    let index4 = (sumS + index1) % strength;
+    index1 = (index2 + index3) % strength;
+    index2 = (index2 + index4) % strength;
+    index3 = (index1 + index3) % strength;
+    index4 = (index1 + index4) % strength;
+    let res = [];
+    let fibFactor = 0;
+    for (let i = len; i > 0; i--) {
+      for (let j = msgs.length; j > 0; j--) {
+        for (let k = salts.length; k > 0; k--) {
+          let _index1 = index1;
+          index1 = parseInt(parseInt(index2) + i + j + msgs[j - 1] + salts[k - 1]) % strength;
+          index2 = parseInt(parseInt(index3) + i + k + msgs[j - 1] + salts[k - 1]) % strength;
+          index3 = parseInt(parseInt(index4) + j + k + msgs[j - 1] + salts[k - 1]) % strength;
+          index4 = parseInt(parseInt(_index1) + i + j + k + msgs[j - 1] + salts[k - 1]) % strength;
+          fibFactor = +a(fibFactor, i, j, k, index1, index2, index3, index4);
+          fibFactor = +P(fibFactor, strength);
+          fibFactor = +a(fibFactor, 100);
+        }
       }
+      index1 %= 16 + 1;
+      index2 %= 16 + 1;
+      index3 %= 16 + 1;
+      index4 %= 16 + 1;
+      let f = [...ie(fibFactor)].reverse();
+      f = f[0].charAt(index1) + f[1].charAt(index2) + f[2].charAt(index3) + f[3].charAt(index4);
+      res[i - 1] = +f;
     }
-    m = m.join("");
-    let s = [];
-    let sfi = 0;
-    for (let j = salts[0]; j < len * 3 + salts[0]; j += 3) {
-      for (let i = 0; i < salts.length * 2; i += 2) {
-        let index1 = (salts.length + i) % 8;
-        let index2 = (sumS + i) % 7;
-        let index3 = Math.abs(index1 + index2 - j) % 8;
-        let index4 = Math.abs((index3 + 1) * 2) % 7;
-        fibFactor = a(P(a(fibFactor, i, j, 1, index1, index2, index3, index4), 96), 96);
-        let fib = [...ie(fibFactor)].reverse().slice(0, 64).map((f2) => [f2.charAt(index1), f2.charAt(index2), f2.charAt(index3), f2.charAt(index4)]).flat();
-        let value = salts[i / 2] % 256;
-        let f = fib[value];
-        s[j] = (s[j] ?? 0) + f;
-        s[j] %= 10;
-      }
-    }
-    s = s.join("");
-    let res = v(a(m, s), len);
-    res = res.slice(res.length - len);
-    let bts = $(res, 3).map((s2) => a(P(a(s2, 0), 95), 32));
-    return Z(bts);
+    res = res.map((r) => r % 95 + 32);
+    return Z(res);
   };
   return __toCommonJS(shual_exports);
 })();

@@ -72,10 +72,12 @@
 
 * * Salt: The string to be used to create different hashes for the same passwords (required).
 
-* * Length: The length of the Shual hash (default = 8).
+* * Strength: The strength factor of the Shual hashing algorithm. Could not be less than the next parameter (default = 8).
+
+* * Length: The length of the Shual hash. Could not be greater than the previous parameter (default = 8).
 
 * Examples:
 
-* * `Shual("abc","abc")` , which returns "{Aa|58I$".
+* * `Shual("abc","abc")` , which returns: brHKgj>M
 
-* * `Shual("abc","abc",4)` , which returns "r<.#".
+* * `Shual("abc","abc",10, 10)` , which returns: ord]'[A|Uk
