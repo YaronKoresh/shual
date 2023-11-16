@@ -14,9 +14,9 @@
 
 # What it does?
 
-* Hashes passwords into a sequence of a part of the ASCII charset.
+* Hashes passwords into a sequence of capital english charset.
 
-* Generate hashes by length/strength, with each length/strength independent from other lengths.
+* Generate hashes by length/strength, with each length/strength independent from other lengths/strength.
 
 * Supports passwords/salts with emojis & other high level characters.
 
@@ -24,11 +24,11 @@
 
 # How it works?
 
-1. Get a password, a salt & a hash length.
+1. Gets the password, salt, general strength factor & length for the new hash.
 
 2. Generates some fibonacci sequences, inside a loop, based on the given parameters.
 
-3. Process the fibonacci sequences with all the parameters & into bytes, which then, being returned as characters.
+3. Processes the fibonacci sequences with all the parameters, into a new hash.
 
 - - -
 
@@ -72,12 +72,12 @@
 
 * * Salt: The string to be used to create different hashes for the same passwords (required).
 
-* * Strength: The strength factor of the Shual hashing algorithm. Could not be less than the next parameter (default = 8).
+* * Strength: The strength factor for the Shual hashing algorithm (default = 1).
 
-* * Length: The length of the Shual hash. Could not be greater than the previous parameter (default = 8).
+* * Length: The length of the new Shual hash (default = 64).
 
 * Examples:
 
-* * `Shual("abc","abc")` , which returns: brHKgj>M
+* * `Shual("abc","defg", 1, 5)` , which returns: "SHUAL:defg:NUNOV"
 
-* * `Shual("abc","abc",10, 10)` , which returns: ord]'[A|Uk
+* * `Shual("abc","defg", 1, 3)` , which returns: "SHUAL:defg:MDI"

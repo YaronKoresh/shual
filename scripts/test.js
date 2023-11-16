@@ -2,7 +2,7 @@ import { Shual } from "../dist/bundle.mjs";
 
 let results = [];
 
-/* 1 */ results.push( Shual("abc","abc") === 'brHKgj>M' );
+/* 1 */ results.push( Shual("abc","defg", 1, 5) === "SHUAL:defg:NUNOV" );
 
 console.log("\n\n\n");
 
