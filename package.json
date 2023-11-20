@@ -4,9 +4,9 @@
 		"url": "https://github.com/YaronKoresh/shual/issues"
 	},
 	"dependencies": {
-		"@yaronkoresh/math": "^3.5.2"
+		"@yaronkoresh/math": "^3.5.8"
 	},
-	"description": "A fibonacci based hashing function. With message/salt Utf-8 support & hash length/strength by selection.",
+	"description": "Shual is a fibonacci based cryptography toolset.",
 	"devDependencies": {
 		"@swc/helpers": "^0.5.1",
 		"esbuild": "^0.18.11"
@@ -41,5 +41,5 @@
 		"test": "node ./scripts/test.js"
 	},
 	"type": "module",
-	"version": "3.0.0"
+	"version": "4.0.0"
 }

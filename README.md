@@ -1,4 +1,4 @@
-### Shual: A fibonacci based hashing function. With passwords/salts Utf-8 support & hash length/strength by selection.
+### Shual is a fibonacci based cryptography toolset.
 
 - - -
 
@@ -14,21 +14,11 @@
 
 # What it does?
 
-* Hashes passwords into a sequence of capital english charset.
+* Hashes passwords into a sequence of capital english characters.
 
-* Generate hashes by length/strength, with each length/strength independent from other lengths/strength.
+* Pad & encrypt your data with a password & a salt, while choosing the complexity factor to fit your needs.
 
 * Supports passwords/salts with emojis & other high level characters.
-
-- - -
-
-# How it works?
-
-1. Gets the password, salt, general strength factor & length for the new hash.
-
-2. Generates some fibonacci sequences, inside a loop, based on the given parameters.
-
-3. Processes the fibonacci sequences with all the parameters, into a new hash.
 
 - - -
 
@@ -62,9 +52,9 @@
 
 # What exports are available?
 
-#### Using "Shual":
+#### Using "ShualHash":
 
-* Purpose: Calculate a new Shual hash.
+* Purpose: Calculate a Shual hash.
 
 * Parameters:
 
@@ -74,10 +64,82 @@
 
 * * Strength: The strength factor for the Shual hashing algorithm (default = 1).
 
-* * Length: The length of the new Shual hash (default = 64).
+* * Length: The length of the new Shual hash (default = 32).
 
 * Examples:
 
-* * `Shual("abc","defg", 1, 5)` , which returns: "SHUAL:defg:NUNOV"
+* * `ShualHash("abcd","efg", 1, 13)` , which returns: "SHUAL/HASH/PKKMZCQTZWLYG/Rsl5".
 
-* * `Shual("abc","defg", 1, 3)` , which returns: "SHUAL:defg:MDI"
+* * `ShualHash("abcd","efg", 1, 40)` , which returns: "SHUAL/HASH/JZKQUDCEBTJHFAUIQTBZFHMDQEBZQBLCFJAISXOL/Rsl5".
+
+- - -
+
+#### Using "Pad":
+
+* Purpose: Pad an input before encryption.
+
+* Parameters:
+
+* * Message: The string to be padded (required).
+
+* * Length: The minimal length for the new string (default = 16).
+
+* Examples:
+
+* * `Pad("abcd",7)` , which returns: "LUOabcd".
+
+* * `Pad("abcd",9)` , which returns: "NMZBLabcd".
+
+- - -
+
+#### Using "Unpad":
+
+* Purpose: Unpad an output after decryption.
+
+* Parameters:
+
+* * Message: The string to be unpadded (required).
+
+* Examples:
+
+* * `Unpad("NMZBLabcd")` , which returns: "abcd".
+
+- - -
+
+#### Using "ShualEncrypt":
+
+* Purpose: Message encryption.
+
+* Parameters:
+
+* * Key: The password for the encryption (required).
+
+* * Salt: The salt for the encryption (required).
+
+* * Message: The input string (required).
+
+* * Power: The strength/complexity factor of the process (default = 1).
+
+* Examples:
+
+* * `ShualEncrypt("Pa$$word123*","a random text", "my message is... Hello World!")` , which returns: "SHUAL/CRYPT/9C2E9DE40F71575A3D10D7B9F5F635CD18633E22AF94E37B86CF589470/2bPtyE4LFaxg9wo4hA".
+
+* * `ShualEncrypt("Pa$$word123*","a random text", "my message is... Hello World?")` , which returns: "SHUAL/CRYPT/81345C197E897BD8B96509DDA2A1393BFD45FAC7044358D8C820F60BBE/2bPtyE4LFaxg9wo4hA".
+
+- - -
+
+#### Using "ShualDecrypt":
+
+* Purpose: Message decryption.
+
+* Parameters:
+
+* * Key: The password for the decryption (required).
+
+* * Ciphertext: The protected string (required).
+
+* * Power: The strength/complexity factor of the process (default = 1).
+
+* Examples:
+
+* * `ShualDecrypt("Pa$$word123*","SHUAL/CRYPT/9C2E9DE40F71575A3D10D7B9F5F635CD18633E22AF94E37B86CF589470/2bPtyE4LFaxg9wo4hA")` , which returns: "my message is... Hello World!".
