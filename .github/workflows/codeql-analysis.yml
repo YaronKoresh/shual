@@ -23,12 +23,12 @@ jobs:
         fetch-depth: 10
 
     - name: Initialize CodeQL
-      uses: github/codeql-action/init@b611370bb5703a7efb587f9d136a52ea24c5c38c
+      uses: github/codeql-action/init@662472033e021d55d94146f66f6058822b0b39fd
       with:
         languages: javascript
 
     - name: Autobuild
-      uses: github/codeql-action/autobuild@b611370bb5703a7efb587f9d136a52ea24c5c38c
+      uses: github/codeql-action/autobuild@662472033e021d55d94146f66f6058822b0b39fd
 
     - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@b611370bb5703a7efb587f9d136a52ea24c5c38c
+      uses: github/codeql-action/analyze@662472033e021d55d94146f66f6058822b0b39fd
