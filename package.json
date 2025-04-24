@@ -9,7 +9,7 @@
 	"description": "Shual is a fibonacci based cryptography toolset.",
 	"devDependencies": {
 		"@swc/helpers": "^0.5.1",
-		"esbuild": "^0.18.11"
+		"esbuild": "^0.25.0"
 	},
 	"exports": {
 		".": {
