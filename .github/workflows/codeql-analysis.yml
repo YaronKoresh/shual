@@ -23,7 +23,7 @@ jobs:
         fetch-depth: 10
 
     - name: Initialize CodeQL
-      uses: github/codeql-action/init@9e0d7b8d25671d64c341c19c0152d693099fb5ba
+      uses: github/codeql-action/init@e4fba868fa4b1b91e1fdab776edc8cfbe6e9fb81
       with:
         languages: javascript
 
